@@ -40,7 +40,7 @@ const Category = () => {
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">STT</th>
             <th scope="col">Tên</th>
             <th scope="col">Mô tả</th>
             <th scope="col">Ngày tạo</th>

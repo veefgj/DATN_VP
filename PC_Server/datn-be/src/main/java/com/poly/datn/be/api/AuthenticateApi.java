@@ -24,6 +24,7 @@ import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin("*")
 public class AuthenticateApi {
     @Autowired
     AuthenticationManager authenticationManager;

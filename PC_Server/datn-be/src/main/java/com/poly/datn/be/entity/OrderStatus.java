@@ -21,14 +21,19 @@ public class OrderStatus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
     @Column(name = "name", length = 50, nullable = false)
     private String name;
+
     @Column(name = "description", length = 255, nullable = false)
     private String description;
+
     @Column(name = "create_date", nullable = false)
     private LocalDate createDate;
+
     @Column(name = "update_date", nullable = false)
     private LocalDate updateDate;
+
     @OneToMany(mappedBy = "orderStatus")
     @JsonIgnore
     private Collection<Order> orders;

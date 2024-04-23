@@ -66,6 +66,7 @@ public class OrderServiceImpl implements OrderService {
         order.setEncodeUrl(Base64.getUrlEncoder().encodeToString(String.valueOf(order.getId()).getBytes()));
         order = orderRepo.save(order);
         Collection<OrderDetail> orderDetails = reqOrderDto.getOrderDetails();
+
         for (OrderDetail o : orderDetails) {
             Attribute attribute = attributeService.findById(o.getAttribute().getId());
             if (attribute.getStock() < o.getQuantity()) {

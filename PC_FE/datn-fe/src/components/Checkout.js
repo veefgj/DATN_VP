@@ -48,7 +48,7 @@ const Checkout = (props) => {
     setText(value);
   };
   const onLoad = () => {
-    getAllProvince().then((resp) => setInfo(resp.data));
+    // getAllProvince().then((resp) => setInfo(resp.data)).catch(err => console.log(err));
     if (props.user) {
       getCartItemByAccountId(props.user.id).then((resp) => {
         setCart(resp.data.filter((item) => props.buy.includes(item.id + "")));
@@ -111,6 +111,7 @@ const Checkout = (props) => {
   };
 
   const onSubmitHandler = (data) => {
+    console.log("onSubmitHandler")
     if (voucher.length > 0) {
       getVoucherByCode(voucher)
         .then(() => {
@@ -249,7 +250,7 @@ const Checkout = (props) => {
           <h4 className="mb-3">Địa chỉ nhận hàng</h4>
           <form className="needs-validation" onSubmit={handleSubmit(handleShowFirst)}>
             <div className="row g-3">
-              <div className="col-sm-6">
+              {/* <div className="col-sm-6">
                 <label htmlFor="firstName" className="form-label">
                   <strong>Tỉnh Thành</strong>
                 </label>
@@ -262,8 +263,8 @@ const Checkout = (props) => {
                       </option>
                     ))}
                 </select>
-              </div>
-              <div className="col-sm-6">
+              </div> */}
+              {/* <div className="col-sm-6">
                 <label htmlFor="lastName" className="form-label">
                   <strong>Quận Huyện</strong>
                 </label>
@@ -276,8 +277,8 @@ const Checkout = (props) => {
                       </option>
                     ))}
                 </select>
-              </div>
-              <div className="col-sm-6 mt-2">
+              </div> */}
+              {/* <div className="col-sm-6 mt-2">
                 <label htmlFor="lastName" className="form-label">
                   <strong>Phường Xã</strong>
                 </label>
@@ -290,7 +291,7 @@ const Checkout = (props) => {
                       </option>
                     ))}
                 </select>
-              </div>
+              </div> */}
               <div className="col-12 mt-2">
                 <label htmlFor="address" className="form-label">
                   <strong>Địa chỉ</strong>

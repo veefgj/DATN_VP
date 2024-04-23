@@ -17,27 +17,37 @@ public class Attribute {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
     @Column(name = "name", nullable = true, length = 50)
     private String name;
+
     @Column(name = "size", nullable = false)
     private Integer size;
+
     @Column(name = "price", nullable = false)
     private Double price;
+
     @Column(name = "stock", nullable = false)
     private Integer stock;
+
     @Column(name = "cache", nullable = false)
     private Integer cache;
+
     @Column(name = "create_date", nullable = false)
     private LocalDate createDate;
+
     @Column(name = "modify_date", nullable = false)
     private LocalDate modifyDate;
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     @JsonIgnore
     private Product product;
+
     @OneToMany(mappedBy = "attribute")
     @JsonIgnore
     private Collection<OrderDetail> orderDetails;
+
     @OneToMany(mappedBy = "attribute")
     @JsonIgnore
     private Collection<CartItem> cartItems;

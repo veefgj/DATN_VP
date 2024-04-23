@@ -18,15 +18,20 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
+
     @Column(name = "origin_price", nullable = false)
     private Double originPrice;
+
     @Column(name = "sell_price", nullable = false)
     private Double sellPrice;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id", updatable = true, insertable = true)
     private Order order;
+
     @ManyToOne
     @JoinColumn(name = "attribute_id")
     private Attribute attribute;

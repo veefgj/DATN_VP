@@ -35,6 +35,7 @@ public class OrderApi {
         Pageable pageable = PageRequest.of(page.orElse(1) - 1, size.orElse(8),sort);
         return new ResponseEntity<>(orderService.findOrderByAccountIdAndOrderStatusId(id, status.orElse(0L), pageable), HttpStatus.OK);
     }
+
     @GetMapping(OrderConst.API_ORDER_PAGE_ORDER)
     public ResponseEntity<?> getPageOrders(@RequestParam("id")Long id,
                                        @RequestParam("page")Optional<Integer> page,
@@ -43,6 +44,7 @@ public class OrderApi {
         Pageable pageable = PageRequest.of(page.orElse(1) - 1, size.orElse(8),sort);
         return new ResponseEntity<>(orderService.findOrderByAccount_Id(id, pageable), HttpStatus.OK);
     }
+
     @GetMapping(OrderConst.API_ORDER_PAGE_ORDER_BY_YEAR_AND_MONTH)
     public ResponseEntity<?> getOrderByOrderStatusAndYearAndMonth(@RequestParam("id")Long id,
                                            @RequestParam("year") Integer year,
@@ -53,6 +55,7 @@ public class OrderApi {
         Pageable pageable = PageRequest.of(page.orElse(1) - 1, size.orElse(8),sort);
         return new ResponseEntity<>(orderService.findOrderByOrderStatusAndYearAndMonth(id, year, month, pageable), HttpStatus.OK);
     }
+
     @GetMapping(OrderConst.API_ORDER_PAGE_ORDER_BETWEEN_DATE)
     public ResponseEntity<?> findOrderBetweenDate(@RequestParam("id")Long id,
                                                                   @RequestParam("from") String from,
@@ -66,15 +69,18 @@ public class OrderApi {
         LocalDate toDate = LocalDate.parse(to, dtf);
         return new ResponseEntity<>(orderService.findOrderBetweenDate(id, fromDate, toDate, pageable), HttpStatus.OK);
     }
+
     @PostMapping(OrderConst.API_ORDER_CANCEL)
     public ResponseEntity<?> cancelOrder(@RequestBody ReqCancelOrder reqCancelOrder){
         return new ResponseEntity<>(orderService.cancelOrder(reqCancelOrder), HttpStatus.OK);
     }
+
     @GetMapping(OrderConst.API_ORDER_UPDATE_STATUS)
     public ResponseEntity<?> updateOrderWithStatus(@RequestParam("id")Long orderId,
                                        @RequestParam("status") Long statusId){
         return new ResponseEntity<>(orderService.updateOrderWithStatus(orderId, statusId), HttpStatus.OK);
     }
+
     @GetMapping(OrderConst.API_ORDER_GET_ALL_AND_PAGINATION)
     public ResponseEntity<?> getOrdersAndPagination(@RequestParam("page") Optional<Integer> page,
                                                     @RequestParam("size") Optional<Integer> size,
@@ -83,18 +89,22 @@ public class OrderApi {
         Pageable pageable = PageRequest.of(page.orElse(1) - 1, size.orElse(8),sort);
         return new ResponseEntity<>(orderService.getAllOrdersAndPagination(status.orElse(0L), pageable), HttpStatus.OK);
     }
+
     @GetMapping(OrderConst.API_ORDER_GET_BY_ID)
     public ResponseEntity<?> getOrderById(@RequestParam("id")Long id){
         return new ResponseEntity<>(orderService.getByOrderId(id), HttpStatus.OK);
     }
+
     @PostMapping(OrderConst.API_ORDER_CREATE)
     public ResponseEntity<?> createOrder(@Valid @RequestBody ReqOrderDto reqOrderDto){
         return new ResponseEntity<>(orderService.createOrder(reqOrderDto), HttpStatus.OK);
     }
+
     @PostMapping(OrderConst.API_ORDER_UPDATE)
     public ResponseEntity<?> updateOrder(@Valid @RequestBody ReqUpdateOrderDto reqUpdateOrderDto){
         return new ResponseEntity<>(orderService.updateOrder(reqUpdateOrderDto), HttpStatus.OK);
     }
+
     @GetMapping(OrderConst.API_ORDER_DETAIL_GET_BY_ID)
     public ResponseEntity<?> getOrderDetailByOrderId(@RequestParam("id")Long id){
         return new ResponseEntity<>(orderService.getAllByOrderId(id), HttpStatus.OK);
@@ -106,6 +116,7 @@ public class OrderApi {
         Pageable pageable = PageRequest.of(page.orElse(1) - 1, size.orElse(8));
         return new ResponseEntity<>(orderService.reportByProduct(pageable), HttpStatus.OK);
     }
+
     @GetMapping(OrderConst.API_ORDER_PAGE_ORDER_BY_PRODUCT)
     public ResponseEntity<?> getOrderByProduct(@RequestParam("id") Long id,
                                                @RequestParam("page") Optional<Integer> page,
@@ -118,34 +129,42 @@ public class OrderApi {
     public ResponseEntity<?> reportAmountYear(){
         return new ResponseEntity<>(orderService.reportAmountYear(), HttpStatus.OK);
     }
+
     @GetMapping(OrderConst.API_ORDER_LIST_AMOUNT_MONTH)
     public ResponseEntity<?> reportAmountMonth(@RequestParam("year") Integer year){
         return new ResponseEntity<>(orderService.reportAmountMonth(year), HttpStatus.OK);
     }
+
     @GetMapping(OrderConst.API_ORDER_BASE64)
     public ResponseEntity<?> encode(@RequestParam("encodedUrl") String encodedUrl){
         return new ResponseEntity<>(new String(Base64.getUrlDecoder().decode(encodedUrl)), HttpStatus.OK);
     }
+
     @GetMapping(OrderConst.API_ORDER_COUNT)
     public ResponseEntity<?> countOrder(){
         return new ResponseEntity<>(orderService.countOrder(), HttpStatus.OK);
     }
+
     @GetMapping(OrderConst.API_ORDER_COUNT_BY_NAME)
     public ResponseEntity<?> countOrderByName(){
         return new ResponseEntity<>(orderService.countOrderByName(), HttpStatus.OK);
     }
+
     @PostMapping(OrderConst.API_PROCESS_ORDER)
     public ResponseEntity<?> processOrder(@RequestBody ReqUpdateStatusOrder reqUpdateStatusOrder){
         return new ResponseEntity<>(orderService.processOrder(reqUpdateStatusOrder), HttpStatus.OK);
     }
+
     @PostMapping(OrderConst.API_SHIP_ORDER)
     public ResponseEntity<?> shipOrder(@RequestBody ReqUpdateStatusOrder reqUpdateStatusOrder){
         return new ResponseEntity<>(orderService.shipOrder(reqUpdateStatusOrder), HttpStatus.OK);
     }
+
     @PostMapping(OrderConst.API_SUCCESS_ORDER)
     public ResponseEntity<?> successOrder(@RequestBody ReqUpdateStatusOrder reqUpdateStatusOrder){
         return new ResponseEntity<>(orderService.successOrder(reqUpdateStatusOrder), HttpStatus.OK);
     }
+
     @PostMapping(OrderConst.API_CANCEL_ORDER)
     public ResponseEntity<?> cancelOrder(@RequestBody ReqUpdateStatusOrder reqUpdateStatusOrder){
         return new ResponseEntity<>(orderService.cancelOrder(reqUpdateStatusOrder), HttpStatus.OK);
